@@ -9,9 +9,9 @@ mongoose.connect('mongodb://localhost:27017/mean', { useNewUrlParser: true }).th
   () => {console.log('Database is connected') },
   err => { console.log('Can not connect to the database'+ err)});
 
-const userRoute = require('./routes/user.route');
-const industryRoute = require('./routes/industry.route');
-const timeRoute = require('./routes/time.route');
+const userRoute = require('./routes/user.route.js');
+const industryRoute = require('./routes/industry.route.js');
+const timeRoute = require('./routes/time.route.js');
 var app = express();
 app.use(bodyParser.json());
 app.use(cors());

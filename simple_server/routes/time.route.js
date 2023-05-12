@@ -2,10 +2,10 @@ const express = require('express');
 const app = express();
 const timeRoutes = express.Router();
 
-let Time = require('../model/Time');
+let Time = require('../model/Time.js');
 
 // api to add time
-userRoutes.route('/add').post(function (req, res) {
+timeRoutes.route('/add').post(function (req, res) {
   let time = new Time(req.body);
   time.save()
   .then(time => {
@@ -17,7 +17,7 @@ userRoutes.route('/add').post(function (req, res) {
 });
 
 // api to get times
-userRoutes.route('/').get(function (req, res) {
+timeRoutes.route('/').get(function (req, res) {
   Time.find(function (err, times){
     if(err){
       res.status(400).send({'status': 'failure','mssg': 'Something went wrong'});
@@ -29,7 +29,7 @@ userRoutes.route('/').get(function (req, res) {
 });
 
 // api to get time
-userRoutes.route('/time/:id').get(function (req, res) {
+timeRoutes.route('/time/:id').get(function (req, res) {
   let id = req.params.id;
   Time.findById(id, function (err, time){
     if(err){
@@ -42,7 +42,7 @@ userRoutes.route('/time/:id').get(function (req, res) {
 });
 
 // api to update route
-userRoutes.route('/update/:id').put(function (req, res) {
+timeRoutes.route('/update/:id').put(function (req, res) {
     Time.findById(req.params.id, function(err, time) {
     if (!time){
       res.status(400).send({'status': 'failure','mssg': 'Unable to find data'});
@@ -59,7 +59,7 @@ userRoutes.route('/update/:id').put(function (req, res) {
 });
 
 // api for delete
-userRoutes.route('/delete/:id').delete(function (req, res) {
+timeRoutes.route('/delete/:id').delete(function (req, res) {
   Time.findByIdAndRemove({_id: req.params.id}, function(err,){
     if(err){
       res.status(400).send({'status': 'failure','mssg': 'Something went wrong'});
@@ -70,4 +70,4 @@ userRoutes.route('/delete/:id').delete(function (req, res) {
   });
 });
 
-module.exports = userRoutes;
+module.exports = timeRoutes;
