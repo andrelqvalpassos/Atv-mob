@@ -29,16 +29,14 @@
 <body>
 
   <div class="jumbotron text-center">
-    <h1>Busca de Filmes</h1>
+    <h1>Busce um Clube</h1>
 
     <div class="container">
       <div class="row">
         <div class="col-sm-12">
 
           <form>
-            <input id="nameMovie" class="form-control" type="text" placeholder="Digite o nome do filme...">
-            <br />
-            <a class="btn btn-primary" onclick="searchMovies(document.getElementById('nameMovie').value)">Buscar</a>
+            <a class="btn btn-primary" onclick="searchTime()">Buscar um time</a>
           </form>
 
         </div>
@@ -59,7 +57,7 @@
   <br />
 
   <script>
-    function searchMovies(movie) {
+    function searchTime() {
       $('#title').empty();
       $('#description').empty();
       $('#imdb').empty();
@@ -68,16 +66,16 @@
       var settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://www.omdbapi.com/?t=" + movie + "&apikey=1993e977",
+        "url": "http://127.0.0.1:3000/time/",
         "method": "GET"
       }
 
       $.ajax(settings).done(function (response) {
         console.log(response);
-        $('#title').append(response.Title + "(" + response.Year + ")");
-        $("#my_image").attr("src", response.Poster);
-        $('#description').append(response.Plot);
-        $('#imdb').append("IMDB: " + response.imdbRating);
+        // $('#title').append(response.Title + "(" + response.Year + ")");
+        // $("#my_image").attr("src", response.Poster);
+        // $('#description').append(response.Plot);
+        // $('#imdb').append("IMDB: " + response.imdbRating);
       });
 
     }

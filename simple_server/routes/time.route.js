@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const timeRoutes = express.Router();
 
-let Time = require('../model/Time.js');
+let Time = require('../model/Time');
 
 // api to add time
 timeRoutes.route('/add').post(function (req, res) {
